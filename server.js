@@ -29,7 +29,7 @@ app.get("/actions/send", async (req, res) => {
   try {
     const { to, amount } = req.query;
 
-    const base = process.env.BLINK_SERVER_URL;
+    const base = (process.env.BLINK_SERVER_URL || "").replace(/\/+$/, "");
     const label = amount && to ? `Send ${amount} SOL` : "Send SOL";
 
     res.setHeader("Content-Type", "application/json");
